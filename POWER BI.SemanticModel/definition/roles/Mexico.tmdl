@@ -1,0 +1,7 @@
+role Mexico
+	modelPermission: read
+
+	tablePermission DIM_LOCAL = DIM_LOCAL[id_local] = "1"
+
+	annotation PBI_Id = 0dc28bf58bbf428fa3cd7401658366e4
+

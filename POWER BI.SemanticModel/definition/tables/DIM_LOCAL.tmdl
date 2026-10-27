@@ -1,0 +1,41 @@
+table DIM_LOCAL
+	lineageTag: 2f6f9d8b-c55a-44d9-b7fc-c4e6bee55000
+
+	column id_local
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: aed5bb89-0419-4487-83be-98abb1730723
+		summarizeBy: none
+		sourceColumn: id_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_local
+		dataType: string
+		lineageTag: 2c2ab30e-6159-4ee0-8765-011150f67a84
+		summarizeBy: none
+		sourceColumn: nombre_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column direccion
+		dataType: string
+		lineageTag: 2548dad7-c7a3-4b89-8517-ba16015ed9a5
+		summarizeBy: none
+		sourceColumn: direccion
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_LOCAL = m
+		mode: import
+		source =
+				let
+				  Origen = Sql.Databases("localhost\SQLEXPRESS"),
+				  #"Navegación 1" = Origen{[Name = "DB_DATAMART_MULTIPIZZA"]}[Data],
+				  #"Navegación 2" = #"Navegación 1"{[Schema = "dbo", Item = "DIM_LOCAL"]}[Data]
+				in
+				  #"Navegación 2"
+
+	annotation PBI_ResultType = Table
+

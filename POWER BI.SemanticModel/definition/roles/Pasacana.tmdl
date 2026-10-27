@@ -1,0 +1,7 @@
+role Pasacana
+	modelPermission: read
+
+	tablePermission DIM_LOCAL = DIM_LOCAL[id_local] = "2"
+
+	annotation PBI_Id = a1f0fe7c26d2470dac8cba5bb19c8dd6
+

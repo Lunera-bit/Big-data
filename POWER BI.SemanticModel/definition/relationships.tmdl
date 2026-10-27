@@ -1,0 +1,24 @@
+relationship 342da80d-e341-496f-a1f8-ab7e3e85aa1d
+	fromColumn: DIM_PRESENTACION.id_producto
+	toColumn: DIM_PRODUCTO.id_producto
+
+	annotation PBI_IsFromSource = FS
+
+relationship 6b63ab43-070a-4bbb-b40f-650e41cea7a8
+	fromColumn: FACT_VENTA.id_local
+	toColumn: DIM_LOCAL.id_local
+
+	annotation PBI_IsFromSource = FS
+
+relationship 9fc07eb7-4e0c-4f11-bef5-4382955fb6c6
+	fromColumn: FACT_VENTA.id_presentacion
+	toColumn: DIM_PRESENTACION.id_presentacion
+
+	annotation PBI_IsFromSource = FS
+
+relationship 83a37700-6937-44a4-81b3-1c03727d4085
+	fromColumn: FACT_VENTA.id_tiempo
+	toColumn: DIM_TIEMPO.id_tiempo
+
+	annotation PBI_IsFromSource = FS
+

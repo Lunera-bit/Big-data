@@ -1,0 +1,10 @@
+# Power BI / local
+**/.pbi/
+*.pbix
+*.pbip.user
+*.abf
+
+# Sistema
+.vs/
+Thumbs.db
+desktop.ini

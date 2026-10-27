@@ -1,0 +1,7 @@
+role Universitaria
+	modelPermission: read
+
+	tablePermission DIM_LOCAL = DIM_LOCAL[id_local] = "3"
+
+	annotation PBI_Id = 181e3ebd5bb64f8dac2566ab3a7ce7eb
+

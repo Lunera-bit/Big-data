@@ -1,0 +1,27 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: es-PE
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["DIM_LOCAL","DIM_PRESENTACION","DIM_PRODUCTO","DIM_TIEMPO","FACT_VENTA"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DIM_LOCAL
+ref table DIM_PRESENTACION
+ref table DIM_PRODUCTO
+ref table DIM_TIEMPO
+ref table FACT_VENTA
+
+ref role Mexico
+ref role Pasacana
+ref role Universitaria
+
+ref cultureInfo es-ES
+

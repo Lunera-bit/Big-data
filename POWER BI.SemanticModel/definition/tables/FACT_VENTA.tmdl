@@ -1,0 +1,189 @@
+table FACT_VENTA
+	lineageTag: 458bbbc0-30f4-4722-8f46-ae32f85b5f14
+
+	measure 'Ventas Netas' = SUM ( FACT_VENTA[subtotal] )
+		formatString: \S\/ #,##0.00
+		lineageTag: a4fd4d57-0adc-46b7-bdd5-f8f06bee5848
+
+	measure Tickets = DISTINCTCOUNT ( FACT_VENTA[id_venta] )
+		formatString: #,##0
+		lineageTag: 9e894d85-8ecb-42b5-81bd-751c8af3a32d
+
+	measure 'Ticket Promedio' = DIVIDE ( [Ventas Netas], [Tickets] )
+		formatString: \S\/ #,##0.00
+		lineageTag: 240ecf96-f024-49eb-b520-7411cefb6303
+
+	measure 'Unidades Vendidas' = SUM ( FACT_VENTA[cantidad] )
+		formatString: #,##0
+		lineageTag: 5a3382ad-413b-494d-ae09-a33518b74d96
+
+	measure '% Participación Local' = DIVIDE ( [Ventas Netas], CALCULATE ( [Ventas Netas], ALL ( DIM_LOCAL ) ) )
+		formatString: 0.0%
+		lineageTag: 87926d04-5e0c-4148-8a83-d388137fef9c
+
+	measure 'Rank Producto' = RANKX ( ALL ( DIM_PRODUCTO[nombre_producto] ), [Ventas Netas] )
+		formatString: 0
+		lineageTag: 89f74cc3-bdf5-4f26-b8a1-1fbcc0ff5887
+
+	measure 'Hora Punta' = CONCATENATEX ( TOPN ( 1, VALUES ( FACT_VENTA[Franja Horaria] ), [Ventas Netas], DESC ), FACT_VENTA[Franja Horaria], " / " )
+		lineageTag: b05890e4-59bb-4d09-ac56-734194c03857
+
+	measure '% Ventas Noche' = DIVIDE ( CALCULATE ( [Ventas Netas], FACT_VENTA[Turno] = "Noche (19-21)" ), [Ventas Netas] )
+		formatString: 0.0%
+		lineageTag: 35aeb834-c754-42e0-ba00-574b645f8f68
+
+	measure 'Ayuda Mes' = "Ventas netas por mes. Usa el filtro Periodo para acotar el rango de fechas."
+		lineageTag: 6cd3793e-cc55-47c8-b6f9-1485f8c2ec19
+
+	measure 'Ayuda Dia' = "Ventas netas por día de la semana. Sábado y domingo concentran la demanda de fin de semana."
+		lineageTag: f7ff40cd-dcc4-4b26-9cb4-82a74fdcfacd
+
+	measure 'Ayuda Top Productos' = "Productos con mayores ingresos en el periodo. El ranking se calcula sobre todo el data mart."
+		lineageTag: 831af76e-6173-4b06-bcf2-e7a5b011762e
+
+	measure 'Ayuda Local' = "Participación de cada sucursal (México, Pasacana y Universitaria) en las ventas netas totales."
+		lineageTag: 869c495c-b399-4ae7-96b2-8cd5ace49fda
+
+	measure 'Ayuda Top Presentacion' = "Combinaciones producto–presentación con mayores ingresos en el periodo."
+		lineageTag: 9d4aff9a-5459-47ab-9f13-51ec6be92366
+
+	measure 'Ayuda Tipos' = "Ventas por tipo o tamaño de presentación: Supergigante, Gigante, Familiar, Bipersonal, Personal y complementos."
+		lineageTag: d3ab8d85-7d2f-4ca4-8a77-db5161624b7b
+
+	measure 'Ayuda Hora' = "Ventas netas por hora del día. La mayor demanda se concentra a las 20:00."
+		lineageTag: 41f89028-50b9-4aa0-ae8d-ba17d12c5e37
+
+	measure 'Ayuda Turno' = "Distribución por turno: almuerzo (12-15), tarde (16-18) y noche (19-21)."
+		lineageTag: 50f635cd-db3d-4e3b-802c-e17438a77efe
+
+	column id_venta
+		dataType: string
+		isHidden
+		lineageTag: e63c2566-e60b-4e21-8c41-bdf97d3816dc
+		summarizeBy: none
+		sourceColumn: id_venta
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_tiempo
+		dataType: string
+		isHidden
+		lineageTag: 939b2a8f-7330-445e-9d70-6065047447fb
+		summarizeBy: none
+		sourceColumn: id_tiempo
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_local
+		dataType: string
+		isHidden
+		lineageTag: 4c8e4df8-ec2b-43a4-93b3-34657fde6ac4
+		summarizeBy: none
+		sourceColumn: id_local
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_presentacion
+		dataType: string
+		isHidden
+		lineageTag: c1641518-493a-413f-9ac9-610ce051db31
+		summarizeBy: none
+		sourceColumn: id_presentacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column cantidad
+		dataType: int64
+		formatString: 0
+		lineageTag: 95c77ec3-5719-4e58-ba30-4b8232d9d449
+		summarizeBy: sum
+		sourceColumn: cantidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column precio_unitario
+		dataType: double
+		lineageTag: 75b70bde-21a1-4bc1-89b1-cce1e2f0dc6c
+		summarizeBy: sum
+		sourceColumn: precio_unitario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column subtotal
+		dataType: double
+		lineageTag: f14b2957-c7ac-4ce5-9cd1-829d253c2682
+		summarizeBy: sum
+		sourceColumn: subtotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_detalle
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 0d7c4513-cb62-4f73-b744-124da8203620
+		summarizeBy: none
+		sourceColumn: id_detalle
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora
+		dataType: dateTime
+		isHidden
+		formatString: Long Time
+		lineageTag: 2c1aaba4-ee9a-4e84-b0fd-63a93b59388f
+		summarizeBy: none
+		sourceColumn: hora
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Franja Horaria' = FORMAT ( HOUR ( FACT_VENTA[hora] ), "00" ) & ":00"
+		dataType: string
+		lineageTag: 8526d81f-0b98-4b4a-8be7-d9cd9baf417a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Turno = SWITCH ( TRUE (), HOUR ( FACT_VENTA[hora] ) < 16, "Almuerzo (12-15)", HOUR ( FACT_VENTA[hora] ) < 19, "Tarde (16-18)", "Noche (19-21)" )
+		dataType: string
+		lineageTag: b5db05a2-9cf4-4b42-b024-9d27910b8964
+		summarizeBy: none
+		sortByColumn: 'Turno Orden'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Turno Orden' = SWITCH ( TRUE (), HOUR ( FACT_VENTA[hora] ) < 16, 1, HOUR ( FACT_VENTA[hora] ) < 19, 2, 3 )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 77c430e6-ec7f-442f-a6fc-524f23f4b442
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_producto
+		dataType: string
+		lineageTag: c651d4da-d2b6-41f8-9516-7e05546802d1
+		summarizeBy: none
+		sourceColumn: id_producto
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FACT_VENTA = m
+		mode: import
+		source =
+				let
+				  Origen = Sql.Databases("localhost\SQLEXPRESS"),
+				  #"Navegación 1" = Origen{[Name = "DB_DATAMART_MULTIPIZZA"]}[Data],
+				  #"Navegación 2" = #"Navegación 1"{[Schema = "dbo", Item = "FACT_VENTA"]}[Data]
+				in
+				  #"Navegación 2"
+
+	annotation PBI_ResultType = Table
+

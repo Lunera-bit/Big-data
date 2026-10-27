@@ -1,0 +1,50 @@
+table DIM_PRODUCTO
+	lineageTag: 3fb5bac3-fe3b-4cfa-b64b-9be8ad561b36
+
+	column id_producto
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 76c89f7b-5b15-46d6-b7ae-f781777c57be
+		summarizeBy: none
+		sourceColumn: id_producto
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_producto
+		dataType: string
+		lineageTag: 7b5200f3-2c9e-4eb1-9f9b-4dd270383261
+		summarizeBy: none
+		sourceColumn: nombre_producto
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: 68e761bc-e70b-4d2b-881d-93ec497c3227
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank Ventas' = RANKX ( ALL ( DIM_PRODUCTO[nombre_producto] ), CALCULATE ( SUM ( FACT_VENTA[subtotal] ) ) )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d0362ecd-930a-4e72-bdca-e587d20438b5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_PRODUCTO = m
+		mode: import
+		source =
+				let
+				  Origen = Sql.Databases("localhost\SQLEXPRESS"),
+				  #"Navegación 1" = Origen{[Name = "DB_DATAMART_MULTIPIZZA"]}[Data],
+				  #"Navegación 2" = #"Navegación 1"{[Schema = "dbo", Item = "DIM_PRODUCTO"]}[Data]
+				in
+				  #"Navegación 2"
+
+	annotation PBI_ResultType = Table
+

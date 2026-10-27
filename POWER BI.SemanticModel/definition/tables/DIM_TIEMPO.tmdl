@@ -1,0 +1,129 @@
+table DIM_TIEMPO
+	lineageTag: 98baede7-072c-442f-b522-47d62c86deb3
+	dataCategory: Time
+
+	column id_tiempo
+		dataType: string
+		lineageTag: 5794aab5-3a61-47e3-9696-cf609e6ed23b
+		summarizeBy: none
+		sourceColumn: id_tiempo
+
+		annotation SummarizationSetBy = Automatic
+
+	column fecha
+		dataType: dateTime
+		isKey
+		formatString: Long Date
+		lineageTag: cda79dcb-2ccf-4bb0-b70e-c035a566b262
+		summarizeBy: none
+		sourceColumn: fecha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column anio
+		dataType: int64
+		formatString: 0
+		lineageTag: 62a1972a-b6f8-462c-80f8-df6842e00131
+		summarizeBy: none
+		sourceColumn: anio
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: string
+		lineageTag: cbfd85a5-c935-4074-8f45-5326ee103279
+		summarizeBy: none
+		sourceColumn: mes
+		sortByColumn: mes_numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia
+		dataType: int64
+		formatString: 0
+		lineageTag: 54877c46-ab9e-4cad-a109-29d3769af6be
+		summarizeBy: none
+		sourceColumn: dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_semana
+		dataType: string
+		lineageTag: 41666ec5-8c2c-4e29-be65-25234efc08ba
+		summarizeBy: none
+		sourceColumn: dia_semana
+		sortByColumn: 'Dia Semana N'
+
+		annotation SummarizationSetBy = Automatic
+
+	column turno
+		dataType: string
+		isHidden
+		lineageTag: 419fbcbf-615c-4e25-9d27-e217cdc3d450
+		summarizeBy: none
+		sourceColumn: turno
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora
+		dataType: dateTime
+		isHidden
+		formatString: Long Time
+		lineageTag: c4657326-919c-4dff-baa2-a612f7393bc5
+		summarizeBy: none
+		sourceColumn: hora
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column mes_numero
+		dataType: int64
+		formatString: 0
+		lineageTag: 0eefebc5-a454-456e-aa10-52a0ebb73890
+		summarizeBy: none
+		sourceColumn: mes_numero
+
+		annotation SummarizationSetBy = Automatic
+
+	column trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: e7d47b5e-914a-4c63-b9ed-d6cac809d451
+		summarizeBy: none
+		sourceColumn: trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column semana
+		dataType: int64
+		formatString: 0
+		lineageTag: de307a3e-d4c3-4cc2-85b3-a314e114c1c0
+		summarizeBy: none
+		sourceColumn: semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia Semana N' = WEEKDAY ( DIM_TIEMPO[fecha], 2 )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a920a743-78c4-447a-ae58-77a244e98939
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_TIEMPO = m
+		mode: import
+		source =
+				let
+				  Origen = Sql.Databases("localhost\SQLEXPRESS"),
+				  #"Navegación 1" = Origen{[Name = "DB_DATAMART_MULTIPIZZA"]}[Data],
+				  #"Navegación 2" = #"Navegación 1"{[Schema = "dbo", Item = "DIM_TIEMPO"]}[Data]
+				in
+				  #"Navegación 2"
+
+	annotation PBI_ResultType = Table
+

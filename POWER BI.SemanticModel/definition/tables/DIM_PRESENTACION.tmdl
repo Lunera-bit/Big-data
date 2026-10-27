@@ -1,0 +1,77 @@
+table DIM_PRESENTACION
+	lineageTag: fb65bf1a-75cf-4037-931e-f5eed9b4e54d
+
+	column id_presentacion
+		dataType: string
+		isHidden
+		isKey
+		lineageTag: 4df16f02-8e3b-4c12-bf4a-aaeb50f6540c
+		summarizeBy: none
+		sourceColumn: id_presentacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column nombre_presentacion
+		dataType: string
+		lineageTag: f9e76d45-e496-4c9a-a2b4-88b674de4d0d
+		summarizeBy: none
+		sourceColumn: nombre_presentacion
+
+		annotation SummarizationSetBy = Automatic
+
+	column precio_base
+		dataType: double
+		lineageTag: 5009c230-4015-49b8-878a-2c7d6398fd16
+		summarizeBy: sum
+		sourceColumn: precio_base
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_producto
+		dataType: string
+		isHidden
+		lineageTag: edd226af-c4a7-4e68-a91b-601267516a26
+		summarizeBy: none
+		sourceColumn: id_producto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Etiqueta = RELATED ( DIM_PRODUCTO[nombre_producto] ) & " – " & DIM_PRESENTACION[nombre_presentacion]
+		dataType: string
+		lineageTag: d79286d0-00f3-4c54-8ab3-ca9b8f23f488
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank Presentacion' = RANKX ( ALL ( DIM_PRESENTACION[Etiqueta] ), CALCULATE ( SUM ( FACT_VENTA[subtotal] ) ) )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 89c39bd8-df2f-47dd-8959-5446312e3470
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Rank Tipo' = RANKX ( ALL ( DIM_PRESENTACION[nombre_presentacion] ), CALCULATE ( SUM ( FACT_VENTA[subtotal] ) ) )
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2a31a0c8-2fe3-41d6-948f-9c05a0021573
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_PRESENTACION = m
+		mode: import
+		source =
+				let
+				  Origen = Sql.Databases("localhost\SQLEXPRESS"),
+				  #"Navegación 1" = Origen{[Name = "DB_DATAMART_MULTIPIZZA"]}[Data],
+				  #"Navegación 2" = #"Navegación 1"{[Schema = "dbo", Item = "DIM_PRESENTACION"]}[Data]
+				in
+				  #"Navegación 2"
+
+	annotation PBI_ResultType = Table
+
