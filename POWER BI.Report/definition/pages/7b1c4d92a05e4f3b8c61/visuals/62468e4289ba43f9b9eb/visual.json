@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "62468e4289ba43f9b9eb",
   "position": {
-    "x": 332,
-    "y": 328,
+    "x": 16,
+    "y": 342,
     "z": 6000,
-    "height": 228,
-    "width": 932,
+    "height": 226,
+    "width": 1248,
     "tabOrder": 6000
   },
   "visual": {
@@ -67,6 +67,24 @@
               "nativeQueryRef": "Ayuda Tipos"
             }
           ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_LOCAL"
+                    }
+                  },
+                  "Property": "nombre_local"
+                }
+              },
+              "queryRef": "DIM_LOCAL.nombre_local",
+              "nativeQueryRef": "nombre_local"
+            }
+          ]
         }
       },
       "sortDefinition": {
@@ -88,30 +106,38 @@
       }
     },
     "objects": {
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#20C997'"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      ],
       "legend": [
         {
           "properties": {
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Top'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8F9FA'"
+                    }
+                  }
                 }
               }
             }
@@ -164,7 +190,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#ADB5BD'"
+                      "Value": "'#667085'"
                     }
                   }
                 }
@@ -202,7 +228,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#ADB5BD'"
+                      "Value": "'#667085'"
                     }
                   }
                 }
@@ -227,7 +253,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#2F353C'"
+                      "Value": "'#E3E8EF'"
                     }
                   }
                 }
@@ -312,7 +338,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#212529'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -343,7 +369,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#343A40'"
+                      "Value": "'#DDE4EE'"
                     }
                   }
                 }
@@ -526,7 +552,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#212529'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }

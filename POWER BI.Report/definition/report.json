@@ -66,16 +66,6 @@
           "type": "Image"
         },
         {
-          "name": "receipt-cutoff1793074204441.svg",
-          "path": "receipt-cutoff1793074204441.svg",
-          "type": "Image"
-        },
-        {
-          "name": "ticket-perforated1793074204441.svg",
-          "path": "ticket-perforated1793074204441.svg",
-          "type": "Image"
-        },
-        {
           "name": "clock1793076926663.svg",
           "path": "clock1793076926663.svg",
           "type": "Image"
@@ -83,6 +73,16 @@
         {
           "name": "moon-stars1793076926663.svg",
           "path": "moon-stars1793076926663.svg",
+          "type": "Image"
+        },
+        {
+          "name": "receipt-cutoff1793074204441.svg",
+          "path": "receipt-cutoff1793074204441.svg",
+          "type": "Image"
+        },
+        {
+          "name": "ticket-perforated1793074204441.svg",
+          "path": "ticket-perforated1793074204441.svg",
           "type": "Image"
         }
       ]

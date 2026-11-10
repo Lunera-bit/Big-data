@@ -2,11 +2,11 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "b4e1bb963a944024bcf6",
   "position": {
-    "x": 0,
-    "y": 0,
+    "x": 16,
+    "y": 48,
     "z": 1100,
-    "height": 64,
-    "width": 1280,
+    "height": 54,
+    "width": 1248,
     "tabOrder": 0
   },
   "visual": {
@@ -19,11 +19,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "MultiPizza · Productos y Horarios",
+                    "value": "MultiPizza · Productos",
                     "textStyle": {
                       "fontFamily": "Segoe UI Semibold",
                       "fontSize": "20pt",
-                      "color": "#FFFFFF"
+                      "color": "#1F2937"
                     }
                   }
                 ]
@@ -31,11 +31,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Productos, presentaciones y demanda horaria · 12:00 – 21:00",
+                    "value": "Top productos, presentaciones y tipos · agosto – octubre 2026",
                     "textStyle": {
                       "fontFamily": "Segoe UI",
                       "fontSize": "9pt",
-                      "color": "#CFE2FF"
+                      "color": "#52657A"
                     }
                   }
                 ]
@@ -61,7 +61,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#0B0E12'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }

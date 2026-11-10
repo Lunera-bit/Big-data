@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
   "name": "7b1c4d92a05e4f3b8c61",
-  "displayName": "Productos y Horarios",
+  "displayName": "Productos",
   "displayOption": "FitToPage",
   "height": 720,
   "width": 1280,
@@ -14,7 +14,7 @@
               "color": {
                 "expr": {
                   "Literal": {
-                    "Value": "'#16191D'"
+                    "Value": "'#F4F7FB'"
                   }
                 }
               }

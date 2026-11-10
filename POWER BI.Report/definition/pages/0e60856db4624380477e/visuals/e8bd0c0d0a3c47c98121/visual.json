@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "e8bd0c0d0a3c47c98121",
   "position": {
-    "x": 964,
-    "y": 576,
+    "x": 332,
+    "y": 596,
     "z": 15000,
-    "height": 128,
+    "height": 104,
     "width": 300,
     "tabOrder": 15000
   },
@@ -129,7 +129,7 @@
                 "color": {
                   "expr": {
                     "ThemeDataColor": {
-                      "ColorId": 0,
+                      "ColorId": 1,
                       "Percent": 0
                     }
                   }
@@ -250,7 +250,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#212529'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -281,7 +281,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#343A40'"
+                      "Value": "'#DDE4EE'"
                     }
                   }
                 }
@@ -383,6 +383,11 @@
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "Periodo",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   }

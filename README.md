@@ -53,3 +53,10 @@ El modelo es de tipo **Import**: el repositorio no incluye la caché de datos
 ## Autor
 
 Lunera-bit — 2026.
+
+## Lanzador de escritorio
+
+- Ejecuta `POWER BI Launcher.exe` para abrir una réplica navegable de las cuatro páginas del informe. Al iniciar, **Examinar** solicita el archivo `.pbip`; recuerda la última carpeta seleccionada.
+- Incluye filtros globales, gráficos animados y tooltips para gráficos y KPI. Consulta la misma base local `DB_DATAMART_MULTIPIZZA` en `localhost\SQLEXPRESS`; SQL Server Express debe estar encendido.
+- El botón **Abrir página en Power BI** abre el proyecto original en la pestaña seleccionada.
+- El código C# está en `POWER BI Launcher/`. En Windows con .NET Framework, ejecuta `POWER BI Launcher\build.ps1` para compilarlo.

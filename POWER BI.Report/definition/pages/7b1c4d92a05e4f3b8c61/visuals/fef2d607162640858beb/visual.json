@@ -3,14 +3,19 @@
   "name": "fef2d607162640858beb",
   "position": {
     "x": 332,
-    "y": 568,
-    "z": 8000,
-    "height": 136,
+    "y": 596,
+    "z": 8100,
+    "height": 104,
     "width": 300,
-    "tabOrder": 8000
+    "tabOrder": 8100
   },
   "visual": {
     "visualType": "slicer",
+    "syncGroup": {
+      "groupName": "Periodo",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "query": {
       "queryState": {
         "Values": {
@@ -250,7 +255,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#212529'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -281,7 +286,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#343A40'"
+                      "Value": "'#DDE4EE'"
                     }
                   }
                 }

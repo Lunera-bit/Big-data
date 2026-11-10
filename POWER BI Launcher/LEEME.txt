@@ -1,0 +1,5 @@
+LANZADOR DEL INFORME MULTIPIZZA
+
+El ejecutable se encuentra en la raíz del repositorio como POWER BI Launcher.exe. Al abrirlo, examina y selecciona el proyecto .pbip; se recuerda la última carpeta.
+
+Replica las cuatro páginas (Resumen, Locales, Productos y Horarios), con datos de DB_DATAMART_MULTIPIZZA en localhost\SQLEXPRESS, filtros globales, animaciones y tooltips. SQL Server Express debe estar encendido.

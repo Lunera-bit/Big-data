@@ -3,14 +3,19 @@
   "name": "e3c1c393aeb847559019",
   "position": {
     "x": 16,
-    "y": 568,
-    "z": 7000,
-    "height": 136,
+    "y": 596,
+    "z": 8000,
+    "height": 104,
     "width": 300,
-    "tabOrder": 7000
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "slicer",
+    "syncGroup": {
+      "groupName": "Local",
+      "fieldChanges": true,
+      "filterChanges": true
+    },
     "query": {
       "queryState": {
         "Values": {
@@ -172,7 +177,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#212529'"
+                      "Value": "'#FFFFFF'"
                     }
                   }
                 }
@@ -203,7 +208,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#343A40'"
+                      "Value": "'#DDE4EE'"
                     }
                   }
                 }
